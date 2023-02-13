@@ -1,0 +1,1 @@
+[![Deployment Pipeline](https://github.com/leandrobattocchio/minecraft-cheap/actions/workflows/pipeline.yml/badge.svg)](https://github.com/leandrobattocchio/minecraft-cheap/actions/workflows/pipeline.yml)

@@ -1,0 +1,111 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Outfit', sans-serif;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+	user-select: none;
+	overflow: hidden;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+.pointer {
+	color: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	font-size: 40px;
+	transform: translate(-50%, -50%);
+}
+
+.material-choice {
+	position: absolute;
+	bottom: 32px;
+	left: 50%;
+	display: flex;
+	transform: translate(-50%);
+	gap: 15px;
+	padding: 13px;
+	border: 5px solid rgb(42, 42, 42);
+	background-color: grey;
+	justify-content: center;
+}
+
+.material-choice img {
+	width: 100px;
+	image-rendering: pixelated;
+	border: 5px solid rgb(42, 42, 42);
+}
+
+.material-choice img.selected {
+	border-color: red;
+}
+
+.start {
+	background-color: rgb(194, 198, 234);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.start h1 {
+	font-size: 70px;
+	margin: 30px;
+}
+
+.start h2 {
+	margin: 15px;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: aliceblue;
+}
+
+.start h2:hover {
+	background-color: rgb(196, 194, 194);
+}
+
+.start p {
+	font-size: 20px;
+}
+
+.start h3 {
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+.start ul {
+	font-size: 22px;
+	list-style: none;
+	text-align: center;
+}
+
+.hud-world {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	display: flex;
+	gap: 5px;
+}
+
+.hud-world button {
+	font-size: 20px;
+	padding: 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.hud-world button:hover {
+	background-color: aliceblue;
+}

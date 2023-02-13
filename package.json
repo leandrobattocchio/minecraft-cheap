@@ -1,0 +1,43 @@
+{
+	"name": "minecraft-poor",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"format": "prettier --write .",
+		"test": "jest",
+		"eslint": "eslint --fix . --ext .js,.jsx",
+		"test:e2e": "cypress run"
+	},
+	"dependencies": {
+		"@react-three/cannon": "6.5.2",
+		"@react-three/drei": "9.56.22",
+		"@react-three/fiber": "8.11.0",
+		"nanoid": "4.0.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"three": "0.149.0",
+		"zustand": "4.3.3"
+	},
+	"devDependencies": {
+		"@types/react": "18.0.27",
+		"@types/react-dom": "18.0.10",
+		"@vitejs/plugin-react": "3.1.0",
+		"cypress": "12.5.1",
+		"eslint": "8.33.0",
+		"eslint-config-prettier": "8.6.0",
+		"eslint-config-standard": "17.0.0",
+		"eslint-plugin-import": "2.27.5",
+		"eslint-plugin-jest": "^27.2.1",
+		"eslint-plugin-n": "15.6.1",
+		"eslint-plugin-promise": "6.1.1",
+		"eslint-plugin-react": "7.32.2",
+		"jest": "29.4.2",
+		"prettier": "2.8.4",
+		"prop-types": "15.8.1",
+		"vite": "4.1.0"
+	}
+}

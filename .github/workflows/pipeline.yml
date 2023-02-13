@@ -1,0 +1,105 @@
+name: Deployment Pipeline
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+
+  avoid_redundancy: 
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Cancel redundant builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with: 
+          access_token: ${{ github.token }}
+  
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run eslint
+  
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+         name: dist
+         path: dist
+
+  e2e: 
+    needs: [lint, build]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm ci
+      - uses: actions/download-artifact@v2
+        with:
+         name: dist
+         path: dist
+      - name: E2E Tests
+        uses: cypress-io/github-action@v5
+        with:
+          comand: npm run test:e2e
+          start: npm run dev
+          wait-on: http://localhost:5173
+  
+  test:
+    needs: [lint, build]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm ci
+      - uses: actions/download-artifact@v2
+        with:
+         name: dist
+         path: dist
+      - name: Test
+        run: npm run test
+  
+  deploy:
+    needs: [test,e2e]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm ci
+      
