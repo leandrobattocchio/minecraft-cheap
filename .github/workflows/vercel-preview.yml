@@ -3,10 +3,6 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  workflow_run:
-    workflows: ['Deployment Pipeline']
-    types:
-      - completed
   push:
     branches-ignore:
       - master
@@ -14,6 +10,12 @@ jobs:
   Deploy-Preview:
     runs-on: ubuntu-22.04
     steps:
+      - uses: lewagon/wait-on-check-action@v1.2.0
+        with:
+            ref: ${{ github.ref }}
+            check-name: 'Run tests'
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+            wait-interval: 10
       - uses: actions/checkout@v2
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
