@@ -8,14 +8,8 @@ on:
       - master
 jobs:
   Deploy-Preview:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: lewagon/wait-on-check-action@v1.2.0
-        with:
-            ref: ${{ github.ref }}
-            check-name: 'Run tests'
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            wait-interval: 10
       - uses: actions/checkout@v2
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
