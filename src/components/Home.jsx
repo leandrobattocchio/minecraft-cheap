@@ -1,7 +1,7 @@
 const Home = ({ handleStart }) => {
 	return (
 		<div className='start'>
-			<h1>Welcome to crotocraft</h1>
+			<h1>Welcome to copycraft</h1>
 			<h3>CONTROLS</h3>
 			<ul>
 				<li>HOLD ALT to delete blocks</li>
