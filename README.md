@@ -21,7 +21,8 @@ Every push and pull request runs a **GitHub Actions** pipeline:
 1. **Lint** with ESLint
 2. **Build** with Vite
 3. **Unit tests** with Jest and **end-to-end tests** with Cypress
-4. **Deploy** to Vercel (only if every previous step passes)
+
+Every push to `master` is deployed automatically to **Vercel**.
 
 ## 🛠️ Tech stack
 
